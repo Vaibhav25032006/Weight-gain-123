@@ -1,0 +1,95 @@
+:root {
+    --primary-color: #1b4d3e; /* हर्बालाइफ डार्क ग्रीन */
+    --accent-color: #8bc34a;  /* लाइट ग्रीन एक्सेंट */
+    --bg-color: #f4f7f5;
+    --card-bg: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+    background-color: var(--bg-color);
+    color: #333;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+#clock-status-banner {
+    background: rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.container {
+    padding: 15px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.download-banner {
+    background: #fff3cd;
+    padding: 12px;
+    text-align: center;
+    border-bottom: 2px solid #ffeeba;
+}
+
+.btn {
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.task-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.task-time {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.footer-btn {
+    display: block;
+    text-align: center;
+    background: var(--primary-color);
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 16px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+}
+
+main {
+    padding-bottom: 80px; /* बैनर ओवरलैप से बचने के लिए नीचे जगह */
+}
