@@ -1,171 +1,84 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herbalife Smart Wellness Tracker</title>
-    <style>
-        :root {
-            --primary: #1b4d3e;     /* Premium Herbalife Dark Green */
-            --accent: #8bc34a;      /* Energizing Light Green */
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-        }
-
-        body { 
-            margin: 0; 
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-main);
-            padding-bottom: 100px;
-        }
-
-        /* 📥 Direct APK Download Banner */
-        .download-banner { 
-            background: linear-gradient(135deg, #fef08a, #fde047); 
-            padding: 15px; 
-            text-align: center; 
-            border-bottom: 3px solid var(--accent);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .download-banner p { margin: 0 0 8px 0; font-weight: bold; color: #713f12; font-size: 13px; }
-        .download-btn { 
-            background: var(--primary); 
-            color: white; 
-            padding: 8px 20px; 
-            text-decoration: none; 
-            border-radius: 20px; 
-            font-weight: bold; 
-            display: inline-block; 
-            font-size: 13px;
-            box-shadow: 0 4px 12px rgba(27,77,62,0.3);
-        }
-
-        /* 👑 Header Design */
-        header { 
-            background: linear-gradient(135deg, var(--primary), #0f2e25); 
-            color: white; 
-            padding: 25px 15px; 
-            text-align: center;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        header h2 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: 0.5px; }
-        #bridge-status { margin-top: 8px; font-size: 12px; color: #fde047; font-weight: 600; background: rgba(255,255,255,0.1); display: inline-block; padding: 4px 12px; border-radius: 12px; }
-
-        .container { padding: 15px; max-width: 480px; margin: 0 auto; }
-
-        /* 📱 Ultimate Dashboard Cards */
-        .card { 
-            background: var(--card-bg); 
-            border-radius: 20px; 
-            padding: 20px; 
-            margin-bottom: 20px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.04); 
-            border: 1px solid #e2e8f0;
-        }
-        .card h3 { margin-top: 0; margin-bottom: 15px; color: var(--primary); font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-
-        /* 📊 Live Progress Visual Graph */
-        .graph-container { background: #f1f5f9; border-radius: 12px; padding: 15px; text-align: center; }
-        .progress-bar-bg { background: #e2e8f0; border-radius: 10px; height: 20px; width: 100%; overflow: hidden; margin: 10px 0; }
-        .progress-bar-fill { background: linear-gradient(90deg, var(--accent), #4ade80); height: 100%; width: 0%; transition: width 0.5s ease-in-out; }
-        #graph-stats { font-weight: bold; color: var(--primary); font-size: 15px; }
-
-        /* 📷 Premium Camera Stream & AI Layout */
-        .camera-wrapper { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        #webcam { width: 100%; display: block; transform: scaleX(-1); }
-        #ai-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px dashed var(--accent); box-sizing: border-box; pointer-events: none; animation: pulse 2s infinite; opacity: 0.5; }
-        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 0.7; } 100% { opacity: 0.3; } }
-        #ai-status { text-align: center; font-weight: 700; color: #f97316; margin: 15px 0 10px 0; font-size: 14px; }
-        .verify-btn { background: var(--accent); color: white; border: none; padding: 14px; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; font-size: 15px; box-shadow: 0 4px 14px rgba(139,195,74,0.4); transition: 0.2s; }
-        .verify-btn:active { transform: scale(0.98); }
-
-        /* 📅 Progress Calendar custom picker */
-        #app-calendar { width: 100%; padding: 12px; font-size: 16px; border-radius: 10px; border: 1px solid #cbd5e1; font-weight: 600; color: var(--text-main); outline: none; box-sizing: border-box; }
-
-        /* ⏰ Dynamic Timeline Task Rows */
-        .task-list { margin-top: 10px; }
-        .task-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #f1f5f9; }
-        .task-row:last-child { border-bottom: none; }
-        .task-time { font-weight: 800; color: var(--primary); font-size: 14px; width: 80px; }
-        .task-details { flex: 1; padding-right: 10px; }
-        .task-details strong { font-size: 15px; color: #1e293b; display: block; }
-        .task-details small { color: var(--text-muted); font-size: 12px; margin-top: 2px; display: block; }
-        
-        /* Checkbox action */
-        .task-checkbox { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; }
-
-        /* 🗺️ Bottom Sticky Navigation */
-        .footer-nav { 
-            position: fixed; bottom: 0; left: 0; right: 0; 
-            background: linear-gradient(135deg, var(--primary), #0f2e25); 
-            color: white; text-align: center; padding: 18px; 
-            text-decoration: none; font-weight: bold; font-size: 15px;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
-            border-top-left-radius: 20px; border-top-right-radius: 20px;
-            letter-spacing: 0.5px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herbalife Goal Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-
-    <div class="download-banner">
-        <p>🚀 बैकग्राउंड अलार्म लॉक करने के लिए सपोर्ट फाइल फोन में इंस्टॉल करें</p>
-        <a href="./app-release.apk" download="Herbalife_Clock_Support.apk" class="download-btn">Download Support APK</a>
+<body class="bg-slate-100 text-slate-900 min-h-screen">
+  <header class="glass-nav border-b border-slate-200 sticky top-0 z-20">
+    <div class="max-w-5xl mx-auto p-4 flex justify-between items-center">
+      <h1 class="font-extrabold text-xl">Herbalife Goal Planner</h1>
+      <span id="statusBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-slate-200 text-slate-700">Standby</span>
     </div>
+  </header>
 
-    <header>
-        <h2>HERBALIFE WELLNESS STUDIO</h2>
-        <div id="bridge-status">🔄 SYSTEM ALARM BRIDGE: LINKED</div>
-    </header>
+  <main class="max-w-5xl mx-auto p-4 md:p-6 space-y-5">
+    <section id="authSection" class="card bg-white p-5 md:p-6">
+      <h2 class="text-lg font-extrabold mb-4">Member / Child Verification</h2>
 
-    <div class="container">
+      <label class="flex items-center gap-2 mb-3 text-sm">
+        <input id="childCheckbox" type="checkbox" class="accent-green-700" />
+        <span>Agar user child hai to checkbox on karo (Member ID nahi chahiye)</span>
+      </label>
 
-        <div class="card">
-            <h3>📊 आज की प्रोग्रेस रिपोर्ट</h3>
-            <div class="graph-container">
-                <div id="graph-stats">0 / 10 टास्क्स पूरे हुए (0%)</div>
-                <div class="progress-bar-bg">
-                    <div id="progress-bar" class="progress-bar-fill"></div>
-                </div>
-            </div>
+      <input id="memberIdInput" type="text" placeholder="Member ID enter karein" class="w-full border border-slate-300 rounded-xl p-3 mb-3" />
+
+      <button id="loadPlanBtn" class="w-full rounded-xl bg-green-700 hover:bg-green-800 text-white font-bold p-3">Load User Plan</button>
+
+      <p id="errorText" class="hidden text-red-600 text-sm mt-3"></p>
+    </section>
+
+    <section id="dashboardSection" class="hidden space-y-5">
+      <div class="card coach-gradient text-white p-5 md:p-6">
+        <h3 id="profileName" class="text-2xl font-extrabold">---</h3>
+        <p id="profileInfo" class="text-xs mt-1 opacity-90">---</p>
+        <p id="profileGoalLine" class="text-sm mt-3">---</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2 bg-slate-200 p-1 rounded-2xl">
+        <button class="tab-btn tab-active" data-tab="diet">Diet Plan</button>
+        <button class="tab-btn" data-tab="tasks">Daily Tasks</button>
+        <button class="tab-btn" data-tab="reports">Reports</button>
+      </div>
+
+      <section id="tab-diet" class="tab-panel space-y-3"></section>
+
+      <section id="tab-tasks" class="tab-panel hidden space-y-4">
+        <div id="taskList" class="space-y-2"></div>
+
+        <div class="card bg-white p-4">
+          <div class="flex justify-between text-sm font-bold">
+            <span>Progress</span>
+            <span id="progressLabel">0%</span>
+          </div>
+          <div class="w-full h-2 bg-slate-200 rounded mt-2 overflow-hidden">
+            <div id="progressBar" class="h-full bg-indigo-600" style="width:0%"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-reports" class="tab-panel hidden space-y-4">
+        <div class="card bg-white p-4">
+          <h4 class="font-extrabold mb-2">Daily Calendar Report</h4>
+          <div id="calendarReport" class="space-y-2 text-sm"></div>
         </div>
 
-        <div class="card">
-            <h3>📷 AI लाइव कैमरा वेरिफिकेशन</h3>
-            <div class="camera-wrapper">
-                <video id="webcam" autoplay playsinline></video>
-                <div id="ai-overlay"></div>
-            </div>
-            <div id="ai-status">🔍 AI Face Scanner: रेडी (चेहरा सामने रखें)</div>
-            <button class="verify-btn" onclick="DashboardEngine.triggerAICameraScan()">Verify Current Task</button>
+        <div class="card bg-white p-4">
+          <h4 class="font-extrabold mb-2">Daily Completion Graph (7 Days)</h4>
+          <canvas id="dailyGraph" height="120"></canvas>
         </div>
 
-        <div class="card">
-            <h3>📅 प्रोग्रेस कैलेंडर (इतिहास)</h3>
-            <input type="date" id="app-calendar" onchange="DashboardEngine.handleDateChange()">
+        <div class="card bg-white p-4">
+          <h4 class="font-extrabold mb-2">Monthly Completion Graph</h4>
+          <canvas id="monthlyGraph" height="120"></canvas>
         </div>
+      </section>
+    </section>
+  </main>
 
-        <div class="card">
-            <h3>⏰ आपका दैनिक हर्बालाइफ शेड्यूल</h3>
-            <div class="task-list" id="timeline-container"></div>
-        </div>
-
-    </div>
-
-    <a href="https://herbalife-smart-wellness-studio.my.canva.site/page-3" class="footer-nav">
-        ⬅️ मुख्य वेबसाइट (कैनवा) पर वापस जाएं
-    </a>
-
-    <script src="voice.js"></script>
-    <script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
