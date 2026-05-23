@@ -1,95 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
 :root {
-    --primary-color: #1b4d3e; /* हर्बालाइफ डार्क ग्रीन */
-    --accent-color: #8bc34a;  /* लाइट ग्रीन एक्सेंट */
-    --bg-color: #f4f7f5;
-    --card-bg: #ffffff;
+  --green-1: #0f766e;
+  --green-2: #15803d;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
-    background-color: var(--bg-color);
-    color: #333;
-}
+* { box-sizing: border-box; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
-
-#clock-status-banner {
-    background: rgba(255, 255, 255, 0.2);
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.container {
-    padding: 15px;
-    max-width: 480px;
-    margin: 0 auto;
+.glass-nav {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
 }
 
 .card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
 
-.download-banner {
-    background: #fff3cd;
-    padding: 12px;
-    text-align: center;
-    border-bottom: 2px solid #ffeeba;
+.coach-gradient {
+  background: linear-gradient(135deg, var(--green-1), var(--green-2));
 }
 
-.btn {
-    background-color: var(--accent-color);
-    color: white;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 5px;
+.tab-btn {
+  border-radius: 0.75rem;
+  padding: 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
 }
 
-.task-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
+.tab-active {
+  background: #ffffff;
+  color: #15803d;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
 }
 
-.task-time {
-    font-weight: bold;
-    color: var(--primary-color);
+.task-item {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.85rem;
+  padding: 0.8rem;
 }
 
-.footer-btn {
-    display: block;
-    text-align: center;
-    background: var(--primary-color);
-    color: white;
-    padding: 15px;
-    text-decoration: none;
-    font-weight: bold;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    font-size: 16px;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
-}
-
-main {
-    padding-bottom: 80px; /* बैनर ओवरलैप से बचने के लिए नीचे जगह */
+canvas {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
 }
